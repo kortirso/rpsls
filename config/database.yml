@@ -1,0 +1,22 @@
+# frozen_string_literal: true
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch('RAILS_MAX_THREADS', 20) %>
+  host: localhost
+  port: 5432
+
+development:
+  <<: *default
+  database: rpsls_development
+
+test:
+  <<: *default
+  database: rpsls_test
+
+production:
+  <<: *default
+  database: rpsls_production
+  username: rpsls
+  password: <%= ENV['RPSLS_DATABASE_PASSWORD'] %>
