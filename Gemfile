@@ -21,10 +21,17 @@ gem 'therubyracer', platforms: :ruby
 gem 'strong_migrations'
 
 group :development, :test do
+  # testing
+  gem 'database_cleaner', '~> 1.8.5'
+  gem 'factory_bot_rails', '~> 6.1.0'
+  gem 'rspec-rails', '~> 4.0.1'
+  # Static analysis
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
+  # N+1 query detector
+  gem 'bullet', '~> 6.1.0'
 end
 
 group :development do
@@ -32,4 +39,9 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :test do
+  gem 'shoulda-matchers'
+  gem 'simplecov', require: false
 end
