@@ -20,6 +20,9 @@ gem 'therubyracer', platforms: :ruby
 # Rules for migrations
 gem 'strong_migrations'
 
+# Dry-Rb
+gem 'dry-initializer', '~> 3.0.2'
+
 group :development, :test do
   # testing
   gem 'database_cleaner', '~> 1.8.5'
