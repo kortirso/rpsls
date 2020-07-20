@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :device do
-    unique_id { '1234567890' }
+  factory :users_session, class: 'Users::Session' do
     association :userable, factory: :guest
   end
 end
