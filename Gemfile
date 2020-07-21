@@ -31,6 +31,9 @@ gem 'fast_jsonapi'
 # API documentation
 gem 'apipie-rails', '0.5.8'
 
+# token
+gem 'jwt', '~> 2.2.1'
+
 group :development, :test do
   # testing
   gem 'database_cleaner', '~> 1.8.5'
