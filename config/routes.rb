@@ -3,7 +3,9 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :devices, only: %i[create]
+      namespace :users do
+        resources :devices, only: %i[create]
+      end
     end
   end
 end

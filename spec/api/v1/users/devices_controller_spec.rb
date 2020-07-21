@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-RSpec.describe Api::V1::DevicesController do
+RSpec.describe Api::V1::Users::DevicesController do
   describe 'POST#create' do
     context 'for invalid params' do
-      let(:request) { post '/api/v1/devices.json', params: { device: { unique_id: '' } } }
+      let(:request) { post '/api/v1/users/devices.json', params: { device: { unique_id: '' } } }
 
       it 'does not create new device' do
         expect { request }.not_to change(Users::Device, :count)
@@ -24,7 +24,7 @@ RSpec.describe Api::V1::DevicesController do
 
     context 'for existed user device' do
       let!(:users_device) { create :users_device }
-      let(:request) { post '/api/v1/devices.json', params: { device: { unique_id: users_device.unique_id } } }
+      let(:request) { post '/api/v1/users/devices.json', params: { device: { unique_id: users_device.unique_id } } }
 
       it 'does not create new device' do
         expect { request }.not_to change(Users::Device, :count)
@@ -44,7 +44,7 @@ RSpec.describe Api::V1::DevicesController do
     end
 
     context 'for valid params' do
-      let(:request) { post '/api/v1/devices.json', params: { device: { unique_id: SecureRandom.uuid } } }
+      let(:request) { post '/api/v1/users/devices.json', params: { device: { unique_id: SecureRandom.uuid } } }
 
       it 'creates new device' do
         expect { request }.to change(Users::Device, :count).by(1)
