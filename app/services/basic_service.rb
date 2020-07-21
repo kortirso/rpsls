@@ -39,4 +39,10 @@ module BasicService
     @errors += Array(messages)
     self
   end
+
+  def validate_with(validation, params)
+    contract = validation.new
+    contract_errors = contract.call(params).errors.to_h
+    fail!(contract_errors) if contract_errors.size.positive?
+  end
 end

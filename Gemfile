@@ -22,6 +22,14 @@ gem 'strong_migrations'
 
 # Dry-Rb
 gem 'dry-initializer', '~> 3.0.2'
+gem 'dry-types', '~> 1.4.0'
+gem 'dry-validation', '~> 1.5.0'
+
+# Model Serializers
+gem 'fast_jsonapi'
+
+# API documentation
+gem 'apipie-rails', '0.5.8'
 
 group :development, :test do
   # testing

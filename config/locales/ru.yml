@@ -1,0 +1,6 @@
+ru:
+  dry_validation:
+    errors:
+      rules:
+        unique_id:
+          filled?: Unique ID не может быть пустым
