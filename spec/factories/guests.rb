@@ -2,5 +2,6 @@
 
 FactoryBot.define do
   factory :guest do
+    uuid { SecureRandom.uuid }
   end
 end

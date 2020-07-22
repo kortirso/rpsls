@@ -6,6 +6,6 @@ class CreateCalls < ActiveRecord::Migration[6.0]
       t.string :userable_type
       t.timestamps
     end
-    add_index :calls, [:userable_type, :userable_id]
+    add_index :calls, [:userable_type, :userable_id], unique: true
   end
 end

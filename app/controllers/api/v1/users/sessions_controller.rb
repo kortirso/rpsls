@@ -4,6 +4,8 @@ module Api
   module V1
     module Users
       class SessionsController < Api::V1::BaseController
+        skip_before_action :authenticate, only: %i[create]
+
         resource_description do
           short 'Session information resources'
           formats ['json']
@@ -12,7 +14,6 @@ module Api
         api :POST, '/v1/users/sessions.json', 'Creates session'
         param :unique_id, String, required: false, description: 'Unique device ID'
         error code: 401, desc: 'Unauthorized'
-        error code: 409, desc: 'Conflict'
         def create
           service = ::Users::Sessions::CreateService.call(userable: auto_auth.userable)
           render json: { token: JwtEncoder.encode(uuid: service.result.uuid) }, status: :created

@@ -4,6 +4,7 @@ module Api
   module V1
     module Users
       class DevicesController < Api::V1::BaseController
+        skip_before_action :authenticate, only: %i[create]
         before_action :find_device, only: %i[create]
 
         resource_description do

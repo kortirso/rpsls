@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2020_07_22_174535) do
     t.string "userable_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["userable_type", "userable_id"], name: "index_calls_on_userable_type_and_userable_id"
+    t.index ["userable_type", "userable_id"], name: "index_calls_on_userable_type_and_userable_id", unique: true
     t.index ["uuid"], name: "index_calls_on_uuid"
   end
 
