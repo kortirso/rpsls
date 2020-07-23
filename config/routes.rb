@@ -7,7 +7,7 @@ Rails.application.routes.draw do
         resources :devices, only: %i[create]
         resources :sessions, only: %i[create]
       end
-      resources :calls, only: %i[create]
+      resources :calls, only: %i[create destroy]
     end
   end
 end

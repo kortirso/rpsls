@@ -3,6 +3,8 @@
 module Api
   module V1
     class CallsController < Api::V1::BaseController
+      before_action :find_call, only: %i[destroy]
+
       resource_description do
         short 'Call information resources'
         formats ['json']
@@ -18,6 +20,21 @@ module Api
         else
           render json: { errors: service.errors }, status: :conflict
         end
+      end
+
+      api :DELETE, '/v1/calls/:id.json', 'Deletes call'
+      param :id, String, required: true
+      error code: 401, desc: 'Unauthorized'
+      def destroy
+        @call.destroy
+        render json: {}, status: :ok
+      end
+
+      private
+
+      def find_call
+        @call = Current.user.calls.find_by uuid: params[:id]
+        render json: {}, status: :not_found unless @call
       end
     end
   end
