@@ -4,6 +4,8 @@ RSpec.describe Guest, type: :model do
   it { is_expected.to have_many(:users_devices).class_name('Users::Device').dependent(:destroy) }
   it { is_expected.to have_many(:users_sessions).class_name('Users::Session').dependent(:destroy) }
   it { is_expected.to have_many(:calls).dependent(:destroy) }
+  it { is_expected.to have_many(:players).dependent(:destroy) }
+  it { is_expected.to have_many(:games).through(:players) }
 
   it 'factory should be valid' do
     guest = build :guest

@@ -7,5 +7,7 @@ module Userable
     has_many :users_devices, class_name: 'Users::Device', as: :userable, dependent: :destroy
     has_many :users_sessions, class_name: 'Users::Session', as: :userable, dependent: :destroy
     has_many :calls, as: :userable, dependent: :destroy
+    has_many :players, as: :userable, dependent: :destroy
+    has_many :games, through: :players
   end
 end
