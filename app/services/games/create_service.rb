@@ -30,28 +30,7 @@ module Games
     end
 
     def start_game_with_players
-      ActiveRecord::Base.transaction do
-        lock_calls
-        create_game
-        create_players
-        delete_calls
-      end
-    end
-
-    def lock_calls
-      @calls.each(&:lock!)
-    end
-
-    def create_game
-      @game = Game.create!
-    end
-
-    def create_players
-      @calls.each { |element| Player.create!(game: @game, userable: element.userable) }
-    end
-
-    def delete_calls
-      @calls.each(&:destroy!)
+      Games::CreateTransaction.call(calls: @calls)
     end
 
     def resend_calls
@@ -59,7 +38,7 @@ module Games
     end
 
     def call_service
-      @call_service ||= CallRpcService::RpcClient.new
+      CallRpcService::RpcClient.new
     end
   end
 end
